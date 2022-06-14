@@ -51,7 +51,8 @@ public class DBConnection {
     }
 
     void updateTelevition(Television television){
-        String sql="UPDATE store SET name='"+television.name+"',brand='"+television.brand+"',quantity='"+television.quantity+"',high_resolution='"+television.high_resolution+"',image='"+television.image+"',size='"+television.size+"',price='"+television.price+"WHERE id="+television.id;
+        String sql="UPDATE store SET name='"+television.name+"',brand='"+television.brand+"',quantity="+television.quantity+",high_resolution='"+
+                television.high_resolution+"',image='"+television.image+"',size='"+television.size+"',price="+television.price+"WHERE id="+television.id;
         System.out.println(sql);
         try {
             connection.prepareStatement(sql).executeUpdate();
@@ -70,11 +71,9 @@ public class DBConnection {
     }
 
     public void insertTelevition(Television television) {
-        String sql = "INSERT INTO store(name, brand,quantity,high_resolution,image,size,price) VALUES ('"+ television.name + " ','"+
-                television.brand + " ','"+
-                television.quantity + " ,'"+ television.high_resolution
-                + " ','"+ television.image + " ','"+ television.size + " ',"
-                + television.price + ")";
+        String sql="INSERT INTO store(name, brand,quantity,high_resolution,image,size,price) VALUES ('"+television.name+"','"+
+                television.brand+"',"+television.quantity+",'"+television.high_resolution+"','"+television.image+"','"+television.size+"',"+television.price+"))";
+
         System.out.println(sql);
         try {
             connection.prepareStatement(sql).executeUpdate();

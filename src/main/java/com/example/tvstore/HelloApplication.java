@@ -32,15 +32,25 @@ public class HelloApplication extends Application {
 
 
         Button btnAdd = new Button("Add");
+
+        Button btnEdit = new Button("Update");
         btnAdd.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                connection.insertTelevition(new Television(tfName.getText(),tfBrand.getText(),tfQuantity.getText(),tfHigh_resolution.getText(),tfImage.getText(),tfSize.getText(), Float.parseFloat(tfPrice.getText())));
+                connection.insertTelevition(new Television(tfName.getText(),tfBrand.getText(),Integer.parseInt(tfQuantity.getText()),
+                        tfHigh_resolution.getText(),tfImage.getText(),tfSize.getText(), Float.parseFloat(tfPrice.getText())));
                 getThenDisplayTelevition(televisionRoot, connection);
             }
             private void getThenDisplayTelevition(VBox root, DBConnection connection) {
             }
         });
+
+//        btnEdit.setOnAction(event -> {
+//            connection.updateTelevition(new Television(tfName.getText(),tfBrand.getText(),tfQuantity.getText(),
+//                    tfHigh_resolution.getText(),tfImage.getText(),tfSize.getText(), Float.parseFloat(tfPrice.getText(),Integer.parseInt(tfName.getId())));
+//            getThenDisplayStudents(animalsRoot, connection);
+//        });
+
 
         List<Television>televisions=connection.getTelevisions();
 
@@ -62,7 +72,7 @@ public class HelloApplication extends Application {
             Label lbId = new Label("" + televisions.get(i).id);
             Label lbName = new Label(televisions.get(i).name);
             Label lbBrand = new Label("" + televisions.get(i).brand);
-            Label lbQuality = new Label("" + televisions.get(i).quantity);
+            Label lbQuatity = new Label("" + televisions.get(i).quantity);
             Label lbHigh_resolution = new Label("" + televisions.get(i).high_resolution);
             Label lbImage = new Label("" + televisions.get(i).image);
             Label lbSize = new Label("" + televisions.get(i).size);
@@ -82,7 +92,7 @@ public class HelloApplication extends Application {
             });
 
             televitionBox.setSpacing(20);
-            televitionBox.getChildren().addAll(lbId, lbName, lbBrand,lbQuality,lbHigh_resolution,lbImage,lbSize,lbPrice, btnDelete, btnUpdate);
+            televitionBox.getChildren().addAll(lbId, lbName, lbBrand,lbQuatity,lbHigh_resolution,lbImage,lbSize,lbPrice, btnDelete, btnUpdate);
             root.getChildren().add(televitionBox);
         }
     }
